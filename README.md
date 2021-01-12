@@ -69,7 +69,7 @@ class User extends Model
     {
         return $this->huawei_push_token;
     }
-    
+
     /**
      * 如果不同用户所属的APP包名可能不同，请添加此方法
      */
@@ -104,6 +104,10 @@ $user->notify($msg);
 Notification::send($users,$msg);
 ```
 
+## ENV
+```
+env('HUAWEI_PUSH_DEBUG')
+```
 
 ## License
 

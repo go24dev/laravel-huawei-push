@@ -26,7 +26,9 @@ class HuaweiPushChannel
      */
     public function send($notifiable,Notification $notification)
     {
-        $pkg = null;
+        $pkg   = null;
+        $debug = env('HUAWEI_PUSH_DEBUG') ?? false;
+
         if(is_object($notifiable) && method_exists($notifiable,'routeNotificationFor'))
         {
             if(!$sto = $notifiable->routeNotificationFor('huaweiPush'))
@@ -76,7 +78,7 @@ class HuaweiPushChannel
                 $notifiable->invalidNotificationRouters($this,$rts,'token');
             }
         }
-        else
+        elseif($debug)
         {
             Facades\Log::debug("huawei push success \t",compact('eno','ret','mdt'));
         }
