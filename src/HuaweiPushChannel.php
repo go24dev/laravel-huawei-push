@@ -54,7 +54,7 @@ class HuaweiPushChannel
         $msg->token($sts); // 推送目标
         $ret = $app->push_send_msg($mdt = $msg->getFields());
         $eno = data_get($ret,'code');
-        if($eno != '80000000')
+        if($eno != '80000000' && $debug)
         {
             $rts = [];
             if($eno == '80300007')
