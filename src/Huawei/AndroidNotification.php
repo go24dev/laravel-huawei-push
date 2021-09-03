@@ -114,6 +114,17 @@ class AndroidNotification
         return $this->fields;
     }
 
+    /**
+     * Add dynamic data to $fields
+     * @param Array $data
+     */
+    public function addFields(Array $data)
+    {
+        foreach ($data as $key => $value) {
+            $this->fields[$key] = $value;
+        }
+    }
+
     public function buildFields() {
         try{
             $this->check_parameter();
