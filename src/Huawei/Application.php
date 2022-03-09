@@ -80,7 +80,7 @@ class Application
                    "client_id" => $this->appid, )),
             array("Content-Type: application/x-www-form-urlencoded;charset=utf-8")));
 
-        $this->accesstoken = $result->access_token;
+        $this->accesstoken = $result->access_token ?? '';
         $this->token_expiredtime = time() + $result->expires_in;
         return $result->access_token;
     }
@@ -95,6 +95,8 @@ class Application
         if ($this->is_token_expired()) {
             $this->refresh_token();
         }
+
+        if (empty($this->accesstoken)) return;
 
         $result = json_decode($this->curl_https_post(
             str_replace('{appid}', $this->appid, $this->hw_push_server),
