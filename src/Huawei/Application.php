@@ -81,8 +81,8 @@ class Application
             array("Content-Type: application/x-www-form-urlencoded;charset=utf-8")));
 
         $this->accesstoken = $result->access_token ?? '';
-        $this->token_expiredtime = time() + $result->expires_in;
-        return $result->access_token;
+        $this->token_expiredtime = time() + ($result->expires_in ?? 0);
+        return $result->access_token ?? '';
     }
 
 
